@@ -18,6 +18,7 @@ In term of hardware for this section, you will need:
 For breadboard use, simply bend back the metal flaps on each side so that the knob will sit flat in the breadboard. Otherwise, those metal flaps can be attached to a mounting surface for increased stability. Then connect it to the Ardhuino following this schema:
 ![Rotatry encoder physical setup](./images/rotary_encoder.png)
 
+#### Sample code
 Then load the [Rotary encoder sample code](./src/rotary_encoder.ino) in the Arduino IDE and download it to your Arduino:
 ```
 //Any digital pin for the push button effect if used.

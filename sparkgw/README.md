@@ -1,12 +1,19 @@
 # sparkgw (Spark Gateway)
 
+## Prerequisite
+
+Before using the Spark Gateway, you need to install python packages by running: 
+```
+sudo pip2 install -r requirements.txt
+```
+
 ## wtospark.py (write to spark)
 
 Basic Python sample code for receiving data from Arduino and writing to a spark room.
 
-By default, it listens on 9090.
+By default, it listens on 8080.
 
-''curl -X POST -H "X-Device-Secret: 12345" http://localhost:9090/report?temp=32''
+''curl -X POST -H "X-Device-Secret: 12345" http://localhost:8080/report?temp=32''
 
 You should go to spark, login, then register your first bot.
 You can then create a room, either via API or via one of the spark client.
@@ -24,7 +31,7 @@ URL.
 
 For doing so, you can use a tunnel to your localhost with solution such as ngrok (https://ngrok.com/).
 
-Download ngrok for your distribution, unzip it and then start ./ngrok http 9090.
+Download ngrok for your distribution, unzip it and then start ./ngrok http 8080.
 
 The returned URL is valid as long as ngrok is running (free version). Each time you close ngrok, a new URL will be built
 and you will have to renew the webhook update.

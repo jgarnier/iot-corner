@@ -66,8 +66,8 @@ def getmessage(message_id):
 # https://developer.ciscospark.com/endpoint-webhooks-post.html
 # MmQ3YTA0MGUtNGI1Zi00MTI3LTlmZTMtMjQxNGJhYmRjMTI0MzI2ZDFlYWYtYzhh
 
-# curl -X POST -H "X-Device-Secret: 12345" http://localhost:9090/report?temp=32
-# curl -X GET -H "X-Device-Secret: 12345" http://localhost:9090/local
+# curl -X POST -H "X-Device-Secret: 12345" http://localhost:8080/report?temp=32
+# curl -X GET -H "X-Device-Secret: 12345" http://localhost:8080/local
 
 
 YOUR_DEVICE_SECRET = "12345"
@@ -161,4 +161,4 @@ def toSpark(sometext):
 ##-------------------------------------------
 # main()
 if __name__ == '__main__':
-    app.run(host='0.0.0.0' , port=9090, debug=True)
+    app.run(host='0.0.0.0' , port=8080, debug=True)

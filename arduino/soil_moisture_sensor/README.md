@@ -19,13 +19,13 @@ To complete the project, follow these schematics:
 
 Plug the sensor into the soil of a  thirsty plant: light is RED.
 
-[Thirty plant](./thirsty.jpg)
+![Thirty plant](./thirsty.jpg)
 
 Poor some fresh (but not too much) water:
 
-[Flooding plant](./flooding.jpg)
+![Flooding plant](./flooding.jpg)
 
 Led will pass to green:
 
-[Happy plant](./wet.jpg)
+![Happy plant](./wet.jpg)
 

@@ -1,4 +1,6 @@
 
+Copyright https://learn.adafruit.com/ir-breakbeam-sensors/overview
+
 # Overview
 ![](sensors_2167_iso_demo_SIZE.jpg)
 

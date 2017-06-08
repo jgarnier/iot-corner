@@ -79,4 +79,4 @@ void loop(){
 
 With the above wiring, when you put you hand between the sensor pair, the onboard LED will turn on and the serial console will print out messages:
 
-[](sensors_breakserial.png)
+![](sensors_breakserial.png)

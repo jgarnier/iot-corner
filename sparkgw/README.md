@@ -2,7 +2,7 @@
 
 ## Prerequisite
 
-Before using the Spark Gateway, you need to install python packages by running: 
+Before using the Spark Gateway, you need to install python packages by running:
 ```
 sudo pip2 install -r requirements.txt
 ```
@@ -11,15 +11,20 @@ sudo pip2 install -r requirements.txt
 
 Basic Python sample code for receiving data from Arduino and writing to a spark room.
 
-By default, it listens on 8080.
+By default, it listens on 0.0.0.0:8080. Edit the file democonfig.py for setting any other values.
 
 ''curl -X POST -H "X-Device-Secret: 12345" http://localhost:8080/report?temp=32''
 
 You should go to spark, login, then register your first bot.
 You can then create a room, either via API or via one of the spark client.
 On the spark web site, if you activate the test mode, you can play with queries live.
+
+In the python script democonfig.py, you should fill the following variables with the proper value:
   - YOUR_BOT_TOKEN = ""
   - YOUR_ROOM_ID =  ""
+  - YOUR_BOT_EMAIL =  ""
+
+Note: your bot email is mybot@spark.io if you named it mybot.
 
 Each time you send a POST to the server, it will write "Temperature: 32" in your spark room.
 
@@ -55,11 +60,31 @@ Let's do a first callback with the following parameters:
 
 thisIsYourBotId should be replaced by the spark Id of your bot. This looks like a long string such as GFyazovL3VzL1BFT....GFyazovL3VzL1BFT.
 
-In the python script, you should fill the following variables with the proper value:
+In the python script democonfig.py, you should fill the following variables with the proper value:
   - YOUR_BOT_TOKEN = ""
   - YOUR_ROOM_ID =  ""
   - YOUR_BOT_EMAIL =  ""
 
 Note: your bot email is mybot@spark.io if you named it mybot.
 
-You can now send order from the spark room to your server œmybot TEMP?
+You can now send order from the spark room to your server œmybot.
+
+Let's go with examples:
+
+If your Arduino is sending the following events:
+  - curl -X POST -H "X-Device-Secret: 12345" 'http://localhost:8080/report?label=Temperature&key=temp&value=32'
+  - curl -X POST -H "X-Device-Secret: 12345" 'http://localhost:8080/report?label=BlueLed&key=led1&value=on'
+
+From the spark room, you can post the following command:
+  - @mybot GET temp
+  - @mybot GET led1
+
+Once your Arduino has started to send event such as label / key / value, you can send SET commands from your spark room:
+  - @mybot SET temp 23
+  - @mybot SET led1 off
+
+The python server stores the state for each key/value pair reporter by the Arduino (states are lost on server stop).
+
+The Arduino can pull any pending order for a given key by doing:
+  - curl -X GET -H "X-Device-Secret: 12345" http://localhost:8080/getcmdbykey?key=temp
+  - curl -X GET -H "X-Device-Secret: 12345" http://localhost:8080/getcmdbykey?key=led1

@@ -1,3 +1,4 @@
+# TMP007 Infrared Thermopile Sensor
 This is a library for the Adafruit TMP007 Infrared Thermopile Sensor
 
 Designed specifically to work with the Adafruit TMP007 Breakout 

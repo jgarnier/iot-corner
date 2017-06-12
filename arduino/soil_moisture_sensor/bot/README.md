@@ -17,6 +17,15 @@ It is based on the ["flint-bot"](https://github.com/flint-bot/flint) framework.
     $ SOILSENSOR_PORT=3001
     $ npm start
 
+## Posting sensor measures
+
+The bot receives new measures from the sensors using a POST on "http://myserver.com/soilmoisturesensor/:deviceId".
+
+Have a try with following example:
+
+    $ curl --data "moistureLevel=12" http://localhost:3001/soilmoisturesensor/12345
+
+
 ## References
 
 [Spark API](https://spark.laravel.com/docs/3.0/api)

@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 
 var app = express();
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // flint options
 var config = {
@@ -52,6 +53,18 @@ flint.hears(/.*/, function(bot, trigger) {
   bot.say('Could you please rephrase?');
 }, 20);
 
+
+// define express path for incoming sensor notifications
+app.post('/soilmoisturesensor/:deviceId', function(req, res) {
+  var moistureLevel = req.body.moistureLevel || -1;
+  console.log('DevideId: '+ req.params.deviceId +' -> Moisture Level: ' + moistureLevel);
+
+  if (moistureLevel >= 0) {
+    res.send('OK');
+  } else {
+    res.send('wrong moistureLevel value ' + moistureLevel);
+  }
+});
 
 // define express path for incoming webhooks
 app.post('/', webhook(flint));

@@ -33,16 +33,43 @@ flint.hears('help', function(bot, trigger) {
   console.log('print help');
   bot.say('##I\'m SoilSensor, the bot telling you when your plant needs water.\n'+
           'You can ask me the following commands:\n'+
-          '- **soil** will tell you to put water or not\n'+
+          '- **get all** will tell you whether to put water or not for all your plants\n'+
+          '- **get <sensorId>** will tell you whether to put water from a particular sensor measure\n'+
           '- **help** will print this help');
 });
 
 
+// you can adjust the threshold value
+var THRESHOLD_VALUE = 800;
 
-flint.hears('soil', function(bot, trigger) {
+function measureToWaterStatusString(measure) {
+  if (measure < THRESHOLD_VALUE) {
+    return 'Doesn\'t need watering';
+  } else {
+    return 'Time to water your plant';
+  }
+}
 
-  // var nameToSearch = trigger.args[1];
-  var response = 'No need for water';
+function getResponseForSensor(id) {
+  return 'Sensor #'+id+': **'+devicesLastMeasures[id]+'** -> '+measureToWaterStatusString(devicesLastMeasures[id]);
+}
+
+flint.hears('get', function(bot, trigger) {
+
+  var sensorId = trigger.args[1];
+  var response = '**Status of your plants:**\n';
+
+  if (sensorId === 'all') {
+    for (id in devicesLastMeasures) {
+      response += '- '+getResponseForSensor(id) + '\n';
+    }
+  }
+  else if (devicesLastMeasures.hasOwnProperty(sensorId)) {
+    response += '- '+getResponseForSensor(sensorId);
+  }
+  else {
+    response = 'Cannot find sensor #'+sensorId;
+  }
 
   console.log('response: '+response);
   bot.say(response);
@@ -54,10 +81,21 @@ flint.hears(/.*/, function(bot, trigger) {
 }, 20);
 
 
+// define express path for incoming webhooks
+app.post('/', webhook(flint));
+
+// Last measures stored per deviceID
+var devicesLastMeasures = {
+  12345: 50,
+  67890: 900
+ };
+
 // define express path for incoming sensor notifications
 app.post('/soilmoisturesensor/:deviceId', function(req, res) {
   var moistureLevel = req.body.moistureLevel || -1;
   console.log('DevideId: '+ req.params.deviceId +' -> Moisture Level: ' + moistureLevel);
+
+  devicesLastMeasures[req.params.deviceId] = moistureLevel;
 
   if (moistureLevel >= 0) {
     res.send('OK');
@@ -65,9 +103,6 @@ app.post('/soilmoisturesensor/:deviceId', function(req, res) {
     res.send('wrong moistureLevel value ' + moistureLevel);
   }
 });
-
-// define express path for incoming webhooks
-app.post('/', webhook(flint));
 
 // start express server
 var server = app.listen(config.port, function() {

@@ -25,6 +25,7 @@ Then once the program is running, on the Arduino IDE, open the serial monitor in
 
 #### Sensors list
 Here us the list of sensors you can use with the Arduino:
+* [Button](./button/README.md)
 * [DHT22 Temperature and Humidity](./DHT22_TemperatureHumiditySensor/README.md)
 * [IR Break beam](./IR_Breakbeam_Sensors/README.md)
 * [Pulse](./PulseSensorStarterProject/README.md)

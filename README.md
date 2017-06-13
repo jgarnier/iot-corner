@@ -15,3 +15,11 @@ Now that you've done the getting started, let's see some use cases:
 
 ## Raspberry Pi
 Coming soon
+
+## Cisco Spark bots
+Here is a list of bots you can use:
+* [Soil moisture](./bots/soil_moisture/README.md)
+
+## Documentation
+If you want mode documentation, check:
+* [Arduino Cheat Sheet](./docs/Arduino%20Cheat%20Sheet.pdf)

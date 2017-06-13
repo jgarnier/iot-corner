@@ -32,10 +32,10 @@ Have a try with following example:
 
 Just start by saying 'hello' or 'help' to know available commands, then start the conversation:
 
-[Soil Moisture Sensor - Spark Bot](./spark_bot_soilmoisturesensor.png)
+![Soil Moisture Sensor - Spark Bot](./spark_bot_soilmoisturesensor.png)
 
 
 ## References
 
-[Spark API](https://spark.laravel.com/docs/3.0/api)
-[Flint - Cisco Spark Bot SDK for Node JS](https://github.com/flint-bot/flint)
+- [Spark API](https://spark.laravel.com/docs/3.0/api)
+- [Flint - Cisco Spark Bot SDK for Node JS](https://github.com/flint-bot/flint)

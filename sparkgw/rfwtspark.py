@@ -45,6 +45,7 @@ def updateenvbykey(keyname, label, value, command=""):
         for onekey, onedata in oneenv.iteritems():
             if onekey == keyname:
                myenv[localidx] = {keyname: {'init': True, "label": label, "value": value, "command": command, "timestamp": time.time()}}
+               keyfound=True
                break
             localidx+=1
     if keyfound == False:

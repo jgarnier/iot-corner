@@ -1,42 +1,48 @@
 from flask import Flask, request, abort
 import json
 import urllib2
+from democonfig import *
 
 app = Flask(__name__)
 
-#Secret provided by
-# fbabottemp99
-# MmQ3YTA0MGUtNGI1Zi00MTI3LTlmZTMtMjQxNGJhYmRjMTI0MzI2ZDFlYWYtYzhh
 
-# curl -X POST -H "X-Device-Secret: 12345" http://localhost:8080/report?temp=32
-
-
-YOUR_DEVICE_SECRET = "12345"
-YOUR_BOT_TOKEN = ""
-YOUR_ROOM_ID =  ""
+# curl -X POST -H "X-Device-Secret: 12345" 'http://localhost:8080/report?label=Temperature&key=temp&value=32'
+# curl -X POST -H "X-Device-Secret: 12345" 'http://localhost:9090/report?label=BlueLed&key=led1&value=on'
 
 @app.route('/report', methods =['POST'])
 
 def inputArduino():
     headers = request.headers
-    temperature = request.args.get('temp')
+    alabel = request.args.get('label')
+    akey = request.args.get('key')
+    avalue = request.args.get('value')
     incoming_secret = headers.get('X-Device-Secret')
 
-    if temperature is None:
+    if incoming_secret is None or alabel is None or akey is None or avalue is None:
        abort(401)
 
-    if incoming_secret is None:
-       abort(401)
-
-    elif YOUR_DEVICE_SECRET == incoming_secret:
+    if YOUR_DEVICE_SECRET == incoming_secret:
         # we dont use it but for illustration
         json_file = request.json
-        toSpark('**Temperature:** '+temperature)
+        toSpark('**'+alabel+':** '+avalue)
         return 'Ok'
     else:
         print "Spoofed Hook"
         abort(401)
 
+@app.route('/report', methods =['GET'])
+def inputArduinoGet():
+    headers = request.headers
+    alabel = request.args.get('label')
+    akey = request.args.get('key')
+    avalue = request.args.get('value')
+    if  alabel is None or akey is None or avalue is None:
+       abort(401)
+
+    # we dont use it but for illustration
+    json_file = request.json
+    toSpark('**'+alabel+':** '+avalue)
+    return 'Ok'
 
 # POST Function  that sends the commits & comments in markdown to a Spark room
 def toSpark(commits):
@@ -50,4 +56,4 @@ def toSpark(commits):
     return the_page
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0' , port=8080, debug=True)
+    app.run(host=YOUR_HOST_LISTENER , port=YOUR_LOCAL_PORT, debug=True)

@@ -1,0 +1,25 @@
+{
+  "name": "SoilMoistureSensorBot",
+  "version": "1.0.0",
+  "description": "",
+  "repository": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "mocha"
+  },
+  "author": {
+    "name": "Paul-Emmanuel Vandenburie",
+    "email": "paulvand@cisco.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "node-flint": "~4.4.3",
+    "express": "~4.13.1",
+    "body-parser": "~1.13.2",
+    "log4js": "~1.1.1"
+  },
+  "devDependencies": {
+    "mocha": "^3.3.0"
+  }
+}

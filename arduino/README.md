@@ -22,3 +22,20 @@ For breadboard use, simply bend back the metal flaps on each side so that the kn
 Then load the [Rotary encoder sample code](./rotary_encoder/rotary_encoder.ino) in the Arduino IDE and download it to your Arduino.
 
 Then once the program is running, on the Arduino IDE, open the serial monitor in order to see the output. If you turn the button, you should see the index value increasing/decreasing and if you push the button, it resets the index to 0
+
+#### Sensors list
+Here us the list of sensors you can use with the Arduino:
+* [Button](./button/README.md)
+* [DHT22 Temperature and Humidity](./DHT22_TemperatureHumiditySensor/README.md)
+* [IR Break beam](./IR_Breakbeam_Sensors/README.md)
+* [Pulse](./PulseSensorStarterProject/README.md)
+* [Hall effect](./hall_effect_sensor/README.md)
+* [Micro servo SGR92R](./microservo_SG92R/README.md)
+* [NeoPixel Led strip](./neoPixel_led_strip/README.md)
+* [Photo cell](./photocell/README.md)
+* [Piezo Buzzer](./piezo_buzzer/README.md)
+* [Rotary encoder](./rotary_encoder/README.md)
+* [Soil moisture](./soil_moisture_sensor/README.md)
+* [Square Force Sensitive resistor](./square_force_sensitive_resistor/README.md)
+* [Standard servo](./standard_servo/README.md)
+* [TMP007 Infrared Thermopile](./thermopile_sensor_tmp007/README.md)

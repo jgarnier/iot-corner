@@ -72,7 +72,7 @@ def getmessage(message_id):
 
 
 ##-------------------------------------------
-# Receive data from Arduino
+# Receive data from Arduino as POST
 @app.route('/report', methods =['POST'])
 def inputFromArduino():
     headers = request.headers
@@ -90,6 +90,18 @@ def inputFromArduino():
     else:
         print "Spoofed Hook"
         abort(401)
+@app.route('/report', methods =['GET'])
+def inputFromArduinoGet():
+    alabel = request.args.get('label')
+    akey = request.args.get('key')
+    avalue = request.args.get('value')
+    if alabel is None or akey is None or avalue is None:
+       abort(401)
+
+    # we dont use it but for illustration
+    json_file = request.json
+    updateenvbykey(akey,alabel,avalue)
+    return 'Ok'
 
 ##-------------------------------------------
 # Receive req from Arduino to get a key value

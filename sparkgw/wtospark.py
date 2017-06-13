@@ -30,6 +30,19 @@ def inputArduino():
         print "Spoofed Hook"
         abort(401)
 
+@app.route('/report', methods =['GET'])
+def inputArduinoGet():
+    headers = request.headers
+    alabel = request.args.get('label')
+    akey = request.args.get('key')
+    avalue = request.args.get('value')
+    if  alabel is None or akey is None or avalue is None:
+       abort(401)
+
+    # we dont use it but for illustration
+    json_file = request.json
+    toSpark('**'+alabel+':** '+avalue)
+    return 'Ok'
 
 # POST Function  that sends the commits & comments in markdown to a Spark room
 def toSpark(commits):

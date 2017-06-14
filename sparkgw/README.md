@@ -31,7 +31,7 @@ Each time you send a POST to the server, it will write "Temperature: 32" in your
 
 ## Spark and webhook
 
-If you are running the python script locally on a laptop, the server needs to receive incoming requeston a well defined
+If you are running the python script locally on a laptop, the server needs to receive incoming request on a well defined
 URL.
 
 For doing so, you can use a tunnel to your localhost with solution such as ngrok (https://ngrok.com/).

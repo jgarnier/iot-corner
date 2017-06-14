@@ -47,7 +47,7 @@ and you will have to renew the webhook update.
 Basic Python sample code for receiving data from Arduino and writing to a spark room.
 But this script can also receive messages from your spark room.
 
-You should have done the first test with wspark.py.
+You should have done the first test with wtospark.py.
 
 On the spark web site, go to https://developer.ciscospark.com/endpoint-webhooks-post.html, and create your callback.
 

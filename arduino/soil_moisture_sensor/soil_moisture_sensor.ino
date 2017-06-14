@@ -34,5 +34,17 @@ void loop() {
     digitalWrite(redLED, HIGH);
     digitalWrite(greenLED, LOW);
   }
+
+  // Example of posting measure through an HTTP POST
+  //Process p;
+  //String cmd = "curl --data \"moistureLevel="+sensorValue;
+  //cmd = cmd + "\" http://mysite.com/soilmoisturesensor/12345";
+  //p.runShellCommand(cmd);
+
+  // Example of posting measure through an HTTP GET
+  //Process p;
+  //String cmd = "curl http://mysite.com/soilmoisturesensor/12345?moistureLevel="+sensorValue;
+  //p.runShellCommand(cmd);
+
   delay(500);
 }

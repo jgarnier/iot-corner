@@ -104,6 +104,19 @@ app.post('/soilmoisturesensor/:deviceId', function(req, res) {
   }
 });
 
+app.get('/soilmoisturesensor/:deviceId', function(req, res) {
+  var moistureLevel = req.query.moistureLevel || -1;
+  console.log('DevideId: '+ req.params.deviceId +' -> Moisture Level: ' + moistureLevel);
+
+  devicesLastMeasures[req.params.deviceId] = moistureLevel;
+
+  if (moistureLevel >= 0) {
+    res.send('OK');
+  } else {
+    res.send('wrong moistureLevel value ' + moistureLevel);
+  }
+});
+
 // start express server
 var server = app.listen(config.port, function() {
   flint.debug('Flint listening on port %s', config.port);
